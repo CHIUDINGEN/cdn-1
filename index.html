@@ -110,6 +110,7 @@
       <div style="display:flex;align-items:center;gap:12px">
         <strong class="site-title">個人網頁</strong>
         <nav class="links" style="margin-left:10px">
+          <a href="#intro">自我介紹</a>
           <a href="#skills">技能</a>
           <a href="#timeline">經歷</a>
           <a href="#projects">專案</a>
@@ -221,7 +222,7 @@
           <img loading="lazy" src="images/project1_dl.jpg" alt="紙飛機的藝術與科學">
           <div class="project-body">
             <div style="font-weight:700">紙飛機的藝術與科學</div>
-            <div class="project-role">動機：摺紙飛機是童年的遊戲，想深入研究哪些變因會影響飛行距離。角色：專題主研與實驗設計。</div>
+            
             <p style="margin-top:8px">心得：實驗讓我發現許多科學原理與細節的重要性，透過不斷觀察與調整，體會到科學精神與創意結合的樂趣與可能性。</p>
             
           </div>
@@ -230,7 +231,7 @@
           <img loading="lazy" src="images/project2_dl.jpg" alt="木棒抗震塔的設計與研究">
           <div class="project-body">
             <div style="font-weight:700">木棒抗震塔的設計與研究</div>
-            <div class="project-role">動機：工程設計課利用木棒搭建抗震塔，挑戰結構穩定性。角色：結構設計與團隊協作。</div>
+            
             <p style="margin-top:8px">心得：我們的塔能支撐接近六到七級的震度，比預期堅固，學到耐震結構與團隊分工的重要性。</p>
             
           </div>
@@ -239,7 +240,7 @@
           <img loading="lazy" src="images/project3_dl.jpg" alt="顯卡對遊戲體驗的重要性">
           <div class="project-body">
             <div style="font-weight:700">顯卡對遊戲體驗的重要性</div>
-            <div class="project-role">動機：探討顯卡對遊戲與創作工作的影響。角色：資料蒐集與報告撰寫。</div>
+            
             <p style="margin-top:8px">心得：對電腦硬體有更深入的認識，了解顯卡的重要性已超越遊戲領域，並啟發未來學習硬體相關知識的興趣。</p>
             
           </div>
@@ -288,8 +289,13 @@
           if(href.length>1){
             e.preventDefault();
             const target = document.querySelector(href);
-            const y = target.getBoundingClientRect().top + window.scrollY - 16;
-            window.scrollTo({top:y,behavior:'smooth'});
+            if(!target) return;
+            // 如果 section 裡有 <h2>，對其對齊；否則對齊 section 頂端
+            const heading = target.querySelector('h2') || target;
+            const headerEl = document.querySelector('header');
+            const headerHeight = headerEl ? headerEl.offsetHeight : 0;
+            const y = heading.getBoundingClientRect().top + window.scrollY - headerHeight - 8; // 8px margin
+            window.scrollTo({top: y, behavior: 'smooth'});
             history.replaceState(null,'',href);
           }
         })
