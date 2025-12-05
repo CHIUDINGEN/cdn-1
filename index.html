@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>邱鼎恩 — 個人作品集</title>
+  <style>
+    :root{
+      --accent:#5B8DEF;
+      --bg:#f7f9fc;
+      --card:#ffffff;
+      --muted:#6b7280;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: "Segoe UI", Roboto, "Noto Sans TC", "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:#111827;
+      line-height:1.5;
+    }
+    header{
+      background:linear-gradient(90deg,var(--accent),#7DD3FC);
+      color:white;
+      padding:24px 20px;
+      position:sticky;
+      top:0;
+      z-index:10;
+      box-shadow:0 2px 8px rgba(16,24,40,0.06);
+    }
+    .container{max-width:1000px;margin:0 auto;padding:24px}
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+    }
+    .nav .links a{
+      color:rgba(255,255,255,0.95);text-decoration:none;margin-left:12px;font-weight:600;
+    }
+    .hero{
+      display:flex;gap:20px;align-items:center;padding:20px 0;
+    }
+    .avatar{width:140px;height:140px;border-radius:12px;flex:0 0 140px;overflow:hidden;border:4px solid rgba(255,255,255,0.12);background:#fff}
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .personal-info h1{margin:0 0 6px;font-size:1.6rem}
+    .personal-info p{margin:0;color:rgba(255,255,255,0.95)}
+    main{padding:30px 0}
+    section{margin-bottom:32px}
+    h2{font-size:1.1rem;margin:0 0 12px}
+    .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 1px 2px rgba(16,24,40,0.04)}
+    /* Skills */
+    .skills{display:flex;gap:16px;flex-wrap:wrap}
+    .skill{
+      flex:1 1 220px;
+    }
+    .skill .label{display:flex;justify-content:space-between;font-size:0.9rem;margin-bottom:8px}
+    .progress{
+      height:10px;background:#e6eefc;border-radius:999px;overflow:hidden;
+    }
+    .progress > span{
+      display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),#7DD3FC);border-radius:999px;transition:width 800ms cubic-bezier(.2,.8,.2,1);
+    }
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{background:#eef2ff;color:#1e3a8a;padding:6px 8px;border-radius:999px;font-weight:600;cursor:default}
+    /* Timeline */
+    .timeline{position:relative;padding-left:20px}
+    .timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(#ddd,#bbb)}
+    .event{position:relative;margin-bottom:18px;padding:8px 12px;border-radius:8px;background:var(--card);box-shadow:0 1px 3px rgba(16,24,40,0.04)}
+    .event .date{font-size:0.85rem;color:var(--muted);font-weight:700;margin-bottom:6px}
+    .event::before{content:'';position:absolute;left:-24px;top:12px;width:14px;height:14px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(91,141,239,0.12)}
+    /* Projects */
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .project-card{overflow:hidden;transition:transform .25s ease, box-shadow .25s ease;cursor:pointer}
+    .project-card:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(16,24,40,0.12)}
+    .project-card img{width:100%;height:160px;object-fit:cover;display:block}
+    .project-body{padding:12px;background:var(--card)}
+    .project-role{font-size:0.85rem;color:var(--muted);margin-top:6px}
+    /* Responsive */
+    @media (max-width:900px){.projects-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:600px){
+      .hero{flex-direction:column;align-items:flex-start}
+      .avatar{width:110px;height:110px}
+      .projects-grid{grid-template-columns:1fr}
+      .container{padding:16px}
+      header{padding:16px}
+      .nav .links a{margin-left:8px}
+    }
+    /* small interactions */
+    a.cta{background:#fff;color:var(--accent);Padding:8px 10px;border-radius:8px;text-decoration:none;font-weight:700}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div style="display:flex;align-items:center;gap:12px">
+        <strong>個人作品集</strong>
+        <nav class="links" style="margin-left:10px">
+          <a href="#skills">Skills</a>
+          <a href="#timeline">Timeline</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+      <div>
+        <a class="cta" href="#projects">查看作品</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 個人資訊區 -->
+    <section class="card hero" id="about">
+      <div class="avatar">
+        <img src="images/avatar_dl.jpg" alt="邱鼎恩 大頭照">
+      </div>
+      <div class="personal-info" style="flex:1">
+        <h1>邱鼎恩</h1>
+        <p>輔仁大學學生 / 熱衷於工程實作與跨領域合作</p>
+        <p style="margin-top:10px;color:var(--muted)">
+          <strong>Email:</strong> <a href="mailto:glaciernnn@gmail.com">glaciernnn@gmail.com</a>
+          &nbsp;•&nbsp;
+          <strong>電話:</strong> <a href="tel:0975535813">0975-535-813</a>
+          &nbsp;•&nbsp;
+          <strong>IG:</strong> <a href="https://instagram.com/nx1ic" target="_blank" rel="noopener">@nx1ic</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- 技能區 -->
+    <section id="skills">
+      <h2>技能展示</h2>
+      <div class="card skills">
+        <div class="skill">
+          <div class="label"><span>社交能力</span><span>70%</span></div>
+          <div class="progress" data-value="70"><span></span></div>
+        </div>
+        <div class="skill">
+          <div class="label"><span>溝通能力</span><span>70%</span></div>
+          <div class="progress" data-value="70"><span></span></div>
+        </div>
+        <div class="skill">
+          <div class="label"><span>學習能力</span><span>80%</span></div>
+          <div class="progress" data-value="80"><span></span></div>
+        </div>
+        <div class="skill">
+          <div class="label"><span>運動能力</span><span>95%</span></div>
+          <div class="progress" data-value="95"><span></span></div>
+        </div>
+        <div class="skill">
+          <div class="label"><span>創作能力</span><span>60%</span></div>
+          <div class="progress" data-value="60"><span></span></div>
+        </div>
+        <div style="flex-basis:100%;height:4px"></div>
+        <div style="width:100%">
+          <div style="margin-bottom:8px;font-weight:700">快速標籤雲</div>
+          <div class="tags">
+            <div class="tag">溝通</div>
+            <div class="tag">專案管理</div>
+            <div class="tag">UI 設計</div>
+            <div class="tag">資料視覺化</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 時間軸 -->
+    <section id="timeline">
+      <h2>工作／經歷時間軸</h2>
+      <div class="timeline">
+        <div class="event card">
+          <div class="date">2019 - 2022</div>
+          <div class="title"><strong>就讀福和國中</strong></div>
+          <div class="desc">當時對未來還沒有什麼頭緒，甚至不知道未來想讀哪間高中。</div>
+        </div>
+        <div class="event card">
+          <div class="date">2022 - 2025</div>
+          <div class="title"><strong>就讀新店高中（理工組）</strong></div>
+          <div class="desc">逐漸確立方向，高二選擇理工組朝資訊發展，也交了很多好朋友。</div>
+        </div>
+        <div class="event card">
+          <div class="date">2025 - 現在</div>
+          <div class="title"><strong>輔仁大學</strong></div>
+          <div class="desc">學測考上輔仁大學，目前課業壓力尚輕，與朋友們相處充滿歡笑。</div>
+        </div>
+        <div class="event card">
+          <div class="date">畢業後暑假</div>
+          <div class="title"><strong>工作與補習班經歷</strong></div>
+          <div class="desc">畢業後暑假期間從事短期打工：6月在早餐店、7月在便當店；8月起至今於補習班擔任輔導老師，後來也擔任部分行政工作。雖然薪水不多，但累積了經驗並賺到一些收入。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 作品集 -->
+    <section id="projects">
+      <h2>專案作品集</h2>
+      <div class="projects-grid">
+        <div class="project-card card">
+          <img src="images/project1_dl.jpg" alt="紙飛機的藝術與科學">
+          <div class="project-body">
+            <div style="font-weight:700">紙飛機的藝術與科學</div>
+            <div class="project-role">動機：摺紙飛機是童年的遊戲，想深入研究哪些變因會影響飛行距離。角色：專題主研與實驗設計。</div>
+            <p style="margin-top:8px">心得：實驗讓我發現許多科學原理與細節的重要性，透過不斷觀察與調整，體會到科學精神與創意結合的樂趣與可能性。</p>
+            
+          </div>
+        </div>
+        <div class="project-card card">
+          <img src="images/project2_dl.jpg" alt="木棒抗震塔的設計與研究">
+          <div class="project-body">
+            <div style="font-weight:700">木棒抗震塔的設計與研究</div>
+            <div class="project-role">動機：工程設計課利用木棒搭建抗震塔，挑戰結構穩定性。角色：結構設計與團隊協作。</div>
+            <p style="margin-top:8px">心得：我們的塔能支撐接近六到七級的震度，比預期堅固，學到耐震結構與團隊分工的重要性。</p>
+            
+          </div>
+        </div>
+        <div class="project-card card">
+          <img src="images/project3_dl.jpg" alt="顯卡對遊戲體驗的重要性">
+          <div class="project-body">
+            <div style="font-weight:700">顯卡對遊戲體驗的重要性</div>
+            <div class="project-role">動機：探討顯卡對遊戲與創作工作的影響。角色：資料蒐集與報告撰寫。</div>
+            <p style="margin-top:8px">心得：對電腦硬體有更深入的認識，了解顯卡的重要性已超越遊戲領域，並啟發未來學習硬體相關知識的興趣。</p>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 聯絡 -->
+    <section id="contact">
+      <h2>聯絡方式</h2>
+      <div class="card" style="display:flex;flex-direction:column;gap:12px">
+        <div><strong>Email（必填）:</strong> <a href="mailto:glaciernnn@gmail.com">glaciernnn@gmail.com</a></div>
+        <div><strong>GitHub:</strong> <a href="https://github.com/CHIUDINGEN" target="_blank">github.com/CHIUDINGEN</a></div>
+        
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Skills animation: 在元素進入視窗時展開進度條
+    document.addEventListener('DOMContentLoaded', function(){
+      const progressBars = document.querySelectorAll('.progress');
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            const el = entry.target;
+            const value = el.getAttribute('data-value') || 0;
+            el.querySelector('span').style.width = value + '%';
+            io.unobserve(el);
+          }
+        })
+      },{threshold:0.3});
+      progressBars.forEach(pb => io.observe(pb));
+      // 小動畫：緩慢載入 project card 圖片淡入
+      const imgs = document.querySelectorAll('.project-card img');
+      imgs.forEach(img=>{
+        img.style.opacity = 0;
+        img.style.transition = 'opacity 600ms ease';
+        img.addEventListener('load', ()=> img.style.opacity = 1);
+        if(img.complete) img.style.opacity = 1;
+      });
+      // 錨點平滑滾動已由 CSS `scroll-behavior` 處理；此外加入 shift 時微調
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click',(e)=>{
+          const href = a.getAttribute('href');
+          if(href.length>1){
+            e.preventDefault();
+            const target = document.querySelector(href);
+            const y = target.getBoundingClientRect().top + window.scrollY - 16;
+            window.scrollTo({top:y,behavior:'smooth'});
+            history.replaceState(null,'',href);
+          }
+        })
+      });
+    });
+  </script>
+</body>
+</html>
