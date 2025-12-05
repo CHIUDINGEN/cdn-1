@@ -50,18 +50,13 @@
     section{margin-bottom:32px}
     h2{font-size:1.1rem;margin:0 0 12px}
     .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 1px 2px rgba(16,24,40,0.04)}
-    /* Skills */
-    .skills{display:flex;gap:16px;flex-wrap:wrap}
-    .skill{
-      flex:1 1 220px;
-    }
-    .skill .label{display:flex;justify-content:space-between;font-size:0.9rem;margin-bottom:8px}
-    .progress{
-      height:10px;background:#e6eefc;border-radius:999px;overflow:hidden;
-    }
-    .progress > span{
-      display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:999px;transition:width 800ms cubic-bezier(.2,.8,.2,1);
-    }
+    /* Skills (tag cloud) */
+    .skills{display:flex;flex-direction:column;gap:12px}
+    .tags{display:flex;gap:10px;flex-wrap:wrap}
+    .tag{background:#f3e8ff;color:#4c1d95;padding:8px 12px;border-radius:999px;font-weight:700;cursor:default;user-select:none;transition:transform .12s ease, box-shadow .12s ease}
+    .tag:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(75,0,130,0.08)}
+    .tag.small{font-size:0.85rem;padding:6px 10px}
+    .tag.large{font-size:1.05rem;padding:10px 14px}
     /* Timeline */
     .timeline{position:relative;padding-left:20px}
     .timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(#ddd,#bbb)}
@@ -153,28 +148,18 @@
     <section id="skills">
       <h2>技能展示</h2>
       <div class="card skills">
-        <div class="skill">
-          <div class="label"><span>創作能力</span><span>60%</span></div>
-          <div class="progress" data-value="60"><span></span></div>
+        <div class="tags">
+          <div class="tag large">創作能力</div>
+          <div class="tag">溝通能力</div>
+          <div class="tag">社交能力</div>
+          <div class="tag">學習能力</div>
+          <div class="tag large">運動能力</div>
+          <div class="tag">前端開發</div>
+          <div class="tag">資料視覺化</div>
+          <div class="tag">UI 設計</div>
+          <div class="tag small">專案管理</div>
+          <div class="tag small">數據分析</div>
         </div>
-        <div class="skill">
-          <div class="label"><span>社交能力</span><span>70%</span></div>
-          <div class="progress" data-value="70"><span></span></div>
-        </div>
-        <div class="skill">
-          <div class="label"><span>溝通能力</span><span>70%</span></div>
-          <div class="progress" data-value="70"><span></span></div>
-        </div>
-        <div class="skill">
-          <div class="label"><span>學習能力</span><span>80%</span></div>
-          <div class="progress" data-value="80"><span></span></div>
-        </div>
-        <div class="skill">
-          <div class="label"><span>運動能力</span><span>95%</span></div>
-          <div class="progress" data-value="95"><span></span></div>
-        </div>
-        <div style="flex-basis:100%;height:4px"></div>
-        
       </div>
     </section>
 
