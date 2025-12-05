@@ -6,10 +6,11 @@
   <title>邱鼎恩 — 個人作品集</title>
   <style>
     :root{
-      --accent:#5B8DEF;
-      --bg:#f7f9fc;
+      --accent:#8B5CF6; /* 薰衣草紫主色 */
+      --accent-2:#C4B5FD; /* 漸層輔助 */
+      --bg:#f8f7ff; /* 淡薰衣草背景 */
       --card:#ffffff;
-      --muted:#6b7280;
+      --muted:#6b5f8a; /* 暗紫作為次要文字 */
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -21,7 +22,7 @@
       line-height:1.5;
     }
     header{
-      background:linear-gradient(90deg,var(--accent),#7DD3FC);
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
       color:white;
       padding:24px 20px;
       position:sticky;
@@ -36,6 +37,8 @@
     .nav .links a{
       color:rgba(255,255,255,0.95);text-decoration:none;margin-left:12px;font-weight:600;
     }
+    /* Site title (header) styling */
+    .site-title{font-size:1.35rem;font-weight:900;letter-spacing:0.2px}
     .hero{
       display:flex;gap:20px;align-items:center;padding:20px 0;
     }
@@ -57,21 +60,34 @@
       height:10px;background:#e6eefc;border-radius:999px;overflow:hidden;
     }
     .progress > span{
-      display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),#7DD3FC);border-radius:999px;transition:width 800ms cubic-bezier(.2,.8,.2,1);
+      display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:999px;transition:width 800ms cubic-bezier(.2,.8,.2,1);
     }
-    .tags{display:flex;gap:8px;flex-wrap:wrap}
-    .tag{background:#eef2ff;color:#1e3a8a;padding:6px 8px;border-radius:999px;font-weight:600;cursor:default}
     /* Timeline */
     .timeline{position:relative;padding-left:20px}
     .timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(#ddd,#bbb)}
-    .event{position:relative;margin-bottom:18px;padding:8px 12px;border-radius:8px;background:var(--card);box-shadow:0 1px 3px rgba(16,24,40,0.04)}
+    .event{position:relative;margin-bottom:18px;padding:10px;border-radius:8px;background:var(--card);box-shadow:0 1px 3px rgba(16,24,40,0.04);display:flex;gap:12px;align-items:flex-start}
+    .event .event-img{width:84px;height:84px;object-fit:cover;border-radius:8px;flex:0 0 84px;background:var(--bg)}
     .event .date{font-size:0.85rem;color:var(--muted);font-weight:700;margin-bottom:6px}
     .event::before{content:'';position:absolute;left:-24px;top:12px;width:14px;height:14px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(91,141,239,0.12)}
     /* Projects */
     .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .project-card{overflow:hidden;transition:transform .25s ease, box-shadow .25s ease;cursor:pointer}
     .project-card:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(16,24,40,0.12)}
-    .project-card img{width:100%;height:160px;object-fit:cover;display:block}
+    .project-card img{
+      width:100%;
+      height:160px;
+      object-fit:contain;
+      object-position:center;
+      display:block;
+      background:var(--bg);
+      padding:6px;
+    }
+    /* Image zoom (lightbox) */
+    .avatar img, .project-card img, .event-img{cursor:zoom-in}
+    .img-zoom-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(15,12,20,0.6);z-index:1200;opacity:0;pointer-events:none;transition:opacity .18s ease}
+    .img-zoom-overlay.open{opacity:1;pointer-events:auto}
+    .img-zoom-overlay img{max-width:95%;max-height:95%;box-shadow:0 12px 40px rgba(2,6,23,0.6);border-radius:10px}
+    .img-zoom-close{position:fixed;top:18px;right:20px;color:#fff;font-size:22px;background:transparent;border:none;cursor:pointer;z-index:1300}
     .project-body{padding:12px;background:var(--card)}
     .project-role{font-size:0.85rem;color:var(--muted);margin-top:6px}
     /* Responsive */
@@ -92,12 +108,12 @@
   <header>
     <div class="container nav">
       <div style="display:flex;align-items:center;gap:12px">
-        <strong>個人作品集</strong>
+        <strong class="site-title">個人網頁</strong>
         <nav class="links" style="margin-left:10px">
-          <a href="#skills">Skills</a>
-          <a href="#timeline">Timeline</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+          <a href="#skills">技能</a>
+          <a href="#timeline">經歷</a>
+          <a href="#projects">專案</a>
+          <a href="#contact">聯絡方式</a>
         </nav>
       </div>
       <div>
@@ -130,6 +146,10 @@
       <h2>技能展示</h2>
       <div class="card skills">
         <div class="skill">
+          <div class="label"><span>創作能力</span><span>60%</span></div>
+          <div class="progress" data-value="60"><span></span></div>
+        </div>
+        <div class="skill">
           <div class="label"><span>社交能力</span><span>70%</span></div>
           <div class="progress" data-value="70"><span></span></div>
         </div>
@@ -145,45 +165,42 @@
           <div class="label"><span>運動能力</span><span>95%</span></div>
           <div class="progress" data-value="95"><span></span></div>
         </div>
-        <div class="skill">
-          <div class="label"><span>創作能力</span><span>60%</span></div>
-          <div class="progress" data-value="60"><span></span></div>
-        </div>
         <div style="flex-basis:100%;height:4px"></div>
-        <div style="width:100%">
-          <div style="margin-bottom:8px;font-weight:700">快速標籤雲</div>
-          <div class="tags">
-            <div class="tag">溝通</div>
-            <div class="tag">專案管理</div>
-            <div class="tag">UI 設計</div>
-            <div class="tag">資料視覺化</div>
-          </div>
-        </div>
+        
       </div>
     </section>
 
     <!-- 時間軸 -->
     <section id="timeline">
-      <h2>工作／經歷時間軸</h2>
+      <h2>經歷</h2>
       <div class="timeline">
         <div class="event card">
-          <div class="date">2019 - 2022</div>
-          <div class="title"><strong>就讀福和國中</strong></div>
-          <div class="desc">當時對未來還沒有什麼頭緒，甚至不知道未來想讀哪間高中。</div>
+          <img loading="lazy" class="event-img" src="images/timeline1_dl.jpg" alt="福和國中">
+          <div>
+            <div class="date">2019 - 2022</div>
+            <div class="title"><strong>就讀福和國中</strong></div>
+            <div class="desc">當時對未來還沒有什麼頭緒，甚至不知道未來想讀哪間高中。</div>
+          </div>
         </div>
         <div class="event card">
-          <div class="date">2022 - 2025</div>
-          <div class="title"><strong>就讀新店高中（理工組）</strong></div>
-          <div class="desc">逐漸確立方向，高二選擇理工組朝資訊發展，也交了很多好朋友。</div>
+          <img loading="lazy" class="event-img" src="images/timeline2_dl.jpg" alt="新店高中（理工組）">
+          <div>
+            <div class="date">2022 - 2025</div>
+            <div class="title"><strong>就讀新店高中（理工組）</strong></div>
+            <div class="desc">逐漸確立方向，高二選擇理工組朝資訊發展，也交了很多好朋友。</div>
+          </div>
         </div>
         <div class="event card">
-          <div class="date">2025 - 現在</div>
-          <div class="title"><strong>輔仁大學</strong></div>
-          <div class="desc">學測考上輔仁大學，目前課業壓力尚輕，與朋友們相處充滿歡笑。</div>
+          <img loading="lazy" class="event-img" src="images/timeline3_dl.jpg" alt="輔仁大學">
+          <div>
+            <div class="date">2025 - 現在</div>
+            <div class="title"><strong>輔仁大學</strong></div>
+            <div class="desc">學測考上輔仁大學，目前課業壓力尚輕，與朋友們相處充滿歡笑。</div>
+          </div>
         </div>
         <div class="event card">
           <div class="date">畢業後暑假</div>
-          <div class="title"><strong>工作與補習班經歷</strong></div>
+          <div class="title"><strong>工作經驗</strong></div>
           <div class="desc">畢業後暑假期間從事短期打工：6月在早餐店、7月在便當店；8月起至今於補習班擔任輔導老師，後來也擔任部分行政工作。雖然薪水不多，但累積了經驗並賺到一些收入。</div>
         </div>
       </div>
@@ -194,7 +211,7 @@
       <h2>專案作品集</h2>
       <div class="projects-grid">
         <div class="project-card card">
-          <img src="images/project1_dl.jpg" alt="紙飛機的藝術與科學">
+          <img loading="lazy" src="images/project1_dl.jpg" alt="紙飛機的藝術與科學">
           <div class="project-body">
             <div style="font-weight:700">紙飛機的藝術與科學</div>
             <div class="project-role">動機：摺紙飛機是童年的遊戲，想深入研究哪些變因會影響飛行距離。角色：專題主研與實驗設計。</div>
@@ -203,7 +220,7 @@
           </div>
         </div>
         <div class="project-card card">
-          <img src="images/project2_dl.jpg" alt="木棒抗震塔的設計與研究">
+          <img loading="lazy" src="images/project2_dl.jpg" alt="木棒抗震塔的設計與研究">
           <div class="project-body">
             <div style="font-weight:700">木棒抗震塔的設計與研究</div>
             <div class="project-role">動機：工程設計課利用木棒搭建抗震塔，挑戰結構穩定性。角色：結構設計與團隊協作。</div>
@@ -212,7 +229,7 @@
           </div>
         </div>
         <div class="project-card card">
-          <img src="images/project3_dl.jpg" alt="顯卡對遊戲體驗的重要性">
+          <img loading="lazy" src="images/project3_dl.jpg" alt="顯卡對遊戲體驗的重要性">
           <div class="project-body">
             <div style="font-weight:700">顯卡對遊戲體驗的重要性</div>
             <div class="project-role">動機：探討顯卡對遊戲與創作工作的影響。角色：資料蒐集與報告撰寫。</div>
@@ -270,6 +287,41 @@
           }
         })
       });
+      // Image zoom / lightbox: 點擊可放大，Esc 或點背景關閉
+      (function(){
+        function createOverlay(){
+          const overlay = document.createElement('div');
+          overlay.className = 'img-zoom-overlay';
+          overlay.setAttribute('aria-hidden', 'true');
+          const img = document.createElement('img');
+          overlay.appendChild(img);
+          overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeOverlay(); });
+          document.body.appendChild(overlay);
+          return overlay;
+        }
+        const overlay = createOverlay();
+        function openOverlay(src, alt){
+          const img = overlay.querySelector('img');
+          img.src = src;
+          img.alt = alt || '';
+          overlay.setAttribute('aria-hidden','false');
+          overlay.style.display = 'flex';
+          requestAnimationFrame(()=> overlay.classList.add('open'));
+          document.body.style.overflow = 'hidden';
+        }
+        function closeOverlay(){
+          overlay.classList.remove('open');
+          overlay.setAttribute('aria-hidden','true');
+          overlay.addEventListener('transitionend', ()=> overlay.style.display = 'none', {once:true});
+          document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeOverlay(); });
+        // Attach to specific images only
+        document.querySelectorAll('.avatar img, .project-card img, .event-img').forEach(img=>{
+          img.setAttribute('role','button');
+          img.addEventListener('click', ()=> openOverlay(img.src, img.alt));
+        });
+      })();
     });
   </script>
 </body>
