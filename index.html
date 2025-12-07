@@ -69,6 +69,33 @@
     .event .event-img{width:84px;height:84px;object-fit:cover;border-radius:8px;flex:0 0 84px;background:var(--bg)}
     .event .date{font-size:0.85rem;color:var(--muted);font-weight:700;margin-bottom:6px}
     .event::before{content:'';position:absolute;left:-24px;top:12px;width:14px;height:14px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(91,141,239,0.12)}
+    /* Glow + sparkle animations for timeline dots */
+    .event::before{
+      background:var(--accent);
+      box-shadow:0 0 0 4px rgba(139,92,246,0.08);
+      transform-origin:center center;
+      animation:pulse 2200ms ease-in-out infinite;
+    }
+    .event::after{
+      content:'';position:absolute;left:-18px;top:6px;width:6px;height:6px;border-radius:2px;background:linear-gradient(45deg,#fff,rgba(255,255,255,0.6));opacity:0;transform:scale(.6) rotate(25deg);filter:drop-shadow(0 4px 8px rgba(139,92,246,0.06));
+      animation:sparkle 3000ms linear infinite;
+    }
+    @keyframes pulse{
+      0%{transform:scale(1);box-shadow:0 0 0 4px rgba(139,92,246,0.06)}
+      50%{transform:scale(1.25);box-shadow:0 0 14px 8px rgba(139,92,246,0.18)}
+      100%{transform:scale(1);box-shadow:0 0 0 4px rgba(139,92,246,0.06)}
+    }
+    @keyframes sparkle{
+      0%,70%{opacity:0;transform:scale(.6) rotate(25deg)}
+      75%{opacity:1;transform:scale(1) rotate(25deg)}
+      85%{opacity:.25;transform:scale(.8) rotate(25deg)}
+      100%{opacity:0;transform:scale(.6) rotate(25deg)}
+    }
+    /* Stagger sparkle timing for each event for a natural effect */
+    .timeline .event:nth-child(1)::after{animation-delay:0s}
+    .timeline .event:nth-child(2)::after{animation-delay:700ms}
+    .timeline .event:nth-child(3)::after{animation-delay:1400ms}
+    .timeline .event:nth-child(4)::after{animation-delay:2100ms}
     /* Projects */
     .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .project-card{overflow:hidden;transition:transform .25s ease, box-shadow .25s ease;cursor:pointer}
